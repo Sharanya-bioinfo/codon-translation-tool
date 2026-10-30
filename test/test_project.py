@@ -44,7 +44,10 @@ class TestCodonTranslationTool(unittest.TestCase):
         result = calculate_codon_usage("ATGGCCATG")
         self.assertEqual(result["counts"]["ATG"], 2)
         self.assertEqual(result["counts"]["GCC"], 1)
-
+    def test_rscu_for_equal_synonymous_usage(self):
+        result = calculate_codon_usage("TTTTTC")
+        self.assertAlmostEqual(result["rscu"]["TTT"], 1.0)
+        self.assertAlmostEqual(result["rscu"]["TTC"], 1.0)
 
 if __name__ == "__main__":
     unittest.main()
